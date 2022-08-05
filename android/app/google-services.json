@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "511390814196",
+    "project_id": "decorator-app",
+    "storage_bucket": "decorator-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511390814196:android:990b29c8a12cdeab76b3a1",
+        "android_client_info": {
+          "package_name": "com.satyam.decorator_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511390814196-h1lmdgelsoc532euu2vgss425v7pf4d3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.satyam.decorator_app",
+            "certificate_hash": "b586a94179bc772e84ebe3c64bd598f50af3f608"
+          }
+        },
+        {
+          "client_id": "511390814196-rcj48c2irkil61cta9d8rlpifl782kdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALYVbNPB_zQOD2pSpe-A8p_G_IDte-GVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511390814196-rcj48c2irkil61cta9d8rlpifl782kdg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
