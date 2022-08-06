@@ -22,6 +22,7 @@ class _RegisterSreenState extends State<RegisterSreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
@@ -39,6 +40,7 @@ class _RegisterSreenState extends State<RegisterSreen> {
         _emailController.text.trim(),
         _passwordController.text.trim(),
         _nameController.text.trim(),
+        _phoneController.text.trim(),
       );
       setState(() {
         _isLoading = false;
@@ -128,6 +130,27 @@ class _RegisterSreenState extends State<RegisterSreen> {
                           validator: (value) => EmailValidator.validate(value!)
                               ? null
                               : "Please enter a valid email",
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          decoration: inputDecoration.copyWith(
+                            hintText: 'Phone',
+                            prefixIcon: const Icon(
+                              Icons.phone,
+                              color: Colors.redAccent,
+                            ),
+                          ),
+                          controller: _phoneController,
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.next,
+                          validator: (value) {
+                            if(!RegExp(r'^(?:[+0]9)?[0-9]{10}$').hasMatch(value!)) {
+                              return 'Enter a valid phone number';
+                            }
+                            return null;
+                          }
                         ),
                         const SizedBox(
                           height: 10,

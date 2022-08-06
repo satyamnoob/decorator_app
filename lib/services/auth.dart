@@ -1,3 +1,4 @@
+import 'package:decorator_app/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/my_user.dart';
@@ -16,11 +17,16 @@ class AuthService {
   }
 
   // Register User With Email and Password
-  Future<dynamic> registerUser(String email, String password, String name) async {
+  Future<dynamic> registerUser(String email, String password, String name, String phoneNumber) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
+      await DatabaseService(uid: user!.uid).updateUserData(
+        email: email,
+        name: name,
+        phoneNumber: phoneNumber,
+      );
       return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
