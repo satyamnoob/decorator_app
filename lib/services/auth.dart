@@ -15,71 +15,40 @@ class AuthService {
     return user != null ? MyUser(uid: user.uid) : null;
   }
 
-  // // Register User With Email and Password
-  // Future<dynamic> registerUser(String email, String password) async {
-  //   try {
-  //     UserCredential userCredential = await _auth
-  //         .createUserWithEmailAndPassword(email: email, password: password);
-  //     User? user = userCredential.user;
-  //     return _userFromFirebaseUser(user);
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'weak-password') {
-  //       return 'The password provided is too weak.';
-  //     } else if (e.code == 'email-already-in-use') {
-  //       return 'The account already exists for that email.';
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //     return e.toString();
-  //   }
-  // }
+  // Register User With Email and Password
+  Future<dynamic> registerUser(String email, String password, String name) async {
+    try {
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      User? user = userCredential.user;
+      return _userFromFirebaseUser(user);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        return 'The password provided is too weak.';
+      } else if (e.code == 'email-already-in-use') {
+        return 'The account already exists for that email.';
+      }
+    } catch (e) {
+      print(e);
+      return e.toString();
+    }
+  }
 
-  // // Sign In User With Email and Password
-  // Future<dynamic> signInUser(String email, String password) async {
-  //   try {
-  //     UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-  //         email: email, password: password);
-  //     User? user = userCredential.user;
-  //     return _userFromFirebaseUser(user);
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'user-not-found') {
-  //       return 'No user found for that email.';
-  //     } else if (e.code == 'wrong-password') {
-  //       return 'Wrong password provided for that user.';
-  //     }
-  //   }
-  // }
-
-  // Login User with phone number
-  // Future loginWithPhoneNumber(String? phoneNumber) async {
-  //   try {
-  //     MyUser? user;
-  //     return await _auth.verifyPhoneNumber(
-  //       phoneNumber: phoneNumber,
-  //       verificationCompleted: (PhoneAuthCredential phoneAuthCredential) async {
-  //         UserCredential userCredential =  await _auth.signInWithCredential(phoneAuthCredential);
-  //         user  = _userFromFirebaseUser(userCredential.user);
-
-  //       },
-  //       timeout: const Duration(
-  //         seconds: 60,
-  //       ),
-  //       verificationFailed: (FirebaseAuthException e) {
-  //         if (e.code == 'invalid-phone-number') {
-  //           print('The provided phone number is not valid.');
-  //         }
-  //       },
-  //       codeSent: (verificationId, forceResendingToken) async {
-  //         String smsCode = 'xxxx';
-  //         PhoneAuthCredential credential = PhoneAuthProvider.credential(
-  //             verificationId: verificationId, smsCode: smsCode);
-  //         await _auth.signInWithCredential(credential);
-  //       },
-  //       codeAutoRetrievalTimeout: (verificationId) {},
-  //     );
-  //   } catch (e) {}
-    
-  // }
+  // Sign In User With Email and Password
+  Future<dynamic> signInUser(String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User? user = userCredential.user;
+      return _userFromFirebaseUser(user);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return 'No user found for that email.';
+      } else if (e.code == 'wrong-password') {
+        return 'Wrong password provided for that user.';
+      }
+    }
+  }
 
   //Sign Out
   Future signOut() async {

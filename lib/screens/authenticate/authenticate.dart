@@ -1,6 +1,7 @@
+import 'package:decorator_app/screens/authenticate/register.dart';
 import 'package:flutter/material.dart';
 
-import 'log_in.dart';
+import 'login_screen.dart';
 
 class Authenticate extends StatefulWidget {
   const Authenticate({Key? key}) : super(key: key);
@@ -10,8 +11,18 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+  bool isLogin = false;
+  void toggleView() {
+    setState(() {
+      isLogin = !isLogin;
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return Login();
+    if (isLogin) {
+      return LoginScreen(toggleView: toggleView);
+    } else {
+      return RegisterSreen(toggleView: toggleView);
+    }
   }
 }
